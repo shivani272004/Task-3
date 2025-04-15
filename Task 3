@@ -1,0 +1,87 @@
+# html file
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Temperature Converter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="converter">
+    <h2>Temperature Converter</h2>
+    <input type="number" id="tempInput" placeholder="Enter temperature" />
+
+    <select id="unitFrom">
+      <option value="C">Celsius</option>
+      <option value="F">Fahrenheit</option>
+      <option value="K">Kelvin</option>
+    </select>
+
+    <select id="unitTo">
+      <option value="C">Celsius</option>
+      <option value="F">Fahrenheit</option>
+      <option value="K">Kelvin</option>
+    </select>
+
+    <button onclick="convertTemp()">Convert</button>
+
+    <p id="result"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+#style.css
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .converter {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  
+  input, select, button {
+    margin: 10px 5px;
+    padding: 8px;
+    font-size: 16px;
+  }
+
+#javascript file
+function convertTemp() {
+    const input = parseFloat(document.getElementById("tempInput").value);
+    const from = document.getElementById("unitFrom").value;
+    const to = document.getElementById("unitTo").value;
+    const resultField = document.getElementById("result");
+  
+    if (isNaN(input)) {
+      resultField.textContent = "Please enter a valid number.";
+      return;
+    }
+  
+    let converted;
+  
+    // Convert input to Celsius
+    let celsius = input;
+    if (from === "F") celsius = (input - 32) * 5 / 9;
+    if (from === "K") celsius = input - 273.15;
+  
+    // Convert Celsius to target unit
+    if (to === "C") converted = celsius;
+    if (to === "F") converted = (celsius * 9 / 5) + 32;
+    if (to === "K") converted = celsius + 273.15;
+  
+    resultField.textContent = `Result: ${converted.toFixed(2)} °${to}`;
+  }
+  
