@@ -49,3 +49,5 @@ This project is ideal for those learning JavaScript and looking for a hands-on w
 
 
 Output :
+
+![Image](https://github.com/user-attachments/assets/fab98e73-9209-4b5b-913b-cab683200b2d)
